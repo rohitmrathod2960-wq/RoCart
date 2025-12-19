@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>RoCart — Premium Watches</title>
+  <link rel="stylesheet" href="component.css" />
+</head>
+<body>
+  <header class="rc-header">
+    <div class="rc-navbar container">
+      <div class="rc-logo-area">
+        <div class="rc-logo">RoCart</div>
+        <div class="rc-tagline">Premium Watches Only</div>
+      </div>
+
+      <form class="rc-search" id="search-form" aria-label="Search">
+        <input id="search-input" class="rc-search-input" type="search" placeholder="Search for watches, brands and more" />
+        <button type="submit" class="rc-search-btn" aria-label="Search">Search</button>
+      </form>
+
+      <div class="rc-nav-actions">
+        <button class="rc-btn rc-outline">Login</button>
+        <button class="rc-btn rc-text">More</button>
+        <button class="rc-btn rc-cart">Cart</button>
+      </div>
+    </div>
+
+   <nav class="rc-discovery-row container">
+
+  <button class="rc-chip">🔥 Top Deals</button>
+
+  <button class="rc-chip">👑 Rolex</button>
+
+  <button class="rc-chip">💎 Jacob&Co</button>
+
+  <button class="rc-chip">🏆 Luxury</button>
+
+  <button class="rc-chip">⌚ Smart Watches</button>
+
+  <button class="rc-chip">🕒 Analog</button>
+
+  <button class="rc-chip">⏱ Digital</button>
+
+</nav>
+
+
+
+
+
+  </header>
+
+  <main class="rc-main container">
+    <aside class="rc-sidebar">
+      <h2>Filters</h2>
+      <section class="rc-filter-block">
+        <h3>Price</h3>
+        <label><input type="radio" name="price" value="all" checked /> All</label>
+        <label><input type="radio" name="price" value="0-10000" /> Under ₹10,000</label>
+        <label><input type="radio" name="price" value="10000-50000" /> ₹10,000 - ₹50,000</label>
+      </section>
+
+      <section class="rc-filter-block">
+        <h3>Brand</h3>
+        <label><input type="checkbox" name="brand" value="Rolex" checked /> Rolex</label>
+        <label><input type="checkbox" name="brand" value="Jacob" /> Jacob&Co</label>
+        <label><input type="checkbox" name="brand" value="Omega" /> Omega</label>
+        <label><input type="checkbox" name="brand" value="Fossil" /> Fossil</label>
+      </section>
+    </aside>
+
+    <section class="rc-content">
+      <section class="rc-hero">
+        <div class="rc-hero-inner">
+          <div class="rc-hero-text">
+            <h1>RoCart Watch Fest</h1>
+            <p>Exclusive deals on Rolex, Jacob&Co and premium brands.</p>
+            <div class="rc-hero-offer">Up to <strong>40% off</strong> on selected watches</div>
+          </div>
+          <div class="rc-hero-banner">
+            <img src="" alt="" aria-hidden="true" />
+          </div>
+        </div>
+      </section>
+
+      <section class="rc-section rc-topdeals">
+        <div class="rc-section-header">
+          <h2>Top Deals on Watches</h2>
+          <button class="rc-link-btn" id="view-all">VIEW ALL</button>
+        </div>
+        <div id="top-deals-grid" class="rc-product-grid"></div>
+      </section>
+
+      <section class="rc-section" id="brand-sections">
+        <div class="rc-brand-grid" id="brand-grid"></div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="rc-footer">
+    <div class="rc-footer-cols container">
+      <div>
+        <h4>ABOUT ROCART</h4>
+        <p>RoCart is a conceptual watches-only storefront inspired by modern e-commerce design.</p>
+      </div>
+      <div>
+        <h4>HELP</h4>
+        <p>Payments | Shipping | Returns</p>
+      </div>
+      <div>
+        <h4>POLICY</h4>
+        <p>Return Policy | Terms | Privacy</p>
+      </div>
+      <div>
+        <h4>CONTACT</h4>
+        <p>support@rocart.example</p>
+      </div>
+    </div>
+    <div class="rc-footer-bottom">
+      <span>© RoCart Watches</span>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
