@@ -169,7 +169,7 @@ const products = [
     oldPrice: 30000,
     tag: "Smart",
     category: "smart",
-    img: "https://cdnd.lystit.com/photos/31d9-2014/12/02/fossil-brown-mens-chronograph-dean-brown-leather-strap-watch-45mm-fs4788-product-1-17150368-0-191403957-normal.jpeg?auto=webp&quality=60&width=960"
+    img: "https://fossil.scene7.com/is/image/FossilPartners/FS4788_main?wid=960&fmt=webp&qlt=60"
   },
   {
     id: 15,
