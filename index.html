@@ -7,78 +7,91 @@
   <link rel="stylesheet" href="component.css" />
 </head>
 <body>
+
+  <!-- FILTER OVERLAY -->
+  <div class="filter-overlay" id="filterOverlay"></div>
+
   <header class="rc-header">
     <div class="rc-navbar container">
+
+      <!-- FILTER TOGGLE BUTTON -->
+      <button class="filter-toggle" id="openFilters">☰ Filters</button>
+
+
       <div class="rc-logo-area">
         <div class="rc-logo">RoCart</div>
         <div class="rc-tagline">Premium Watches Only</div>
       </div>
 
       <form class="rc-search" id="search-form" aria-label="Search">
-        <input id="search-input" class="rc-search-input" type="search" placeholder="Search for watches, brands and more" />
-        <button type="submit" class="rc-search-btn" aria-label="Search">Search</button>
+        <input
+          id="search-input"
+          class="rc-search-input"
+          type="search"
+          placeholder="Search for watches, brands and more"
+        />
+        <button type="submit" class="rc-search-btn" aria-label="Search">
+          Search
+        </button>
       </form>
 
       <div class="rc-nav-actions">
         <button class="rc-btn rc-outline">Login</button>
         <button class="rc-btn rc-text">More</button>
-        <button class="rc-btn rc-cart">Cart</button>
+
+        <!-- ✅ SINGLE CART BUTTON (HEADER) -->
+        <button class="rc-btn rc-cart" id="openCart">
+          Cart <span class="rc-cart-count" id="cartCount">0</span>
+        </button>
       </div>
     </div>
 
-   <nav class="rc-discovery-row container">
-
-  <button class="rc-chip">🔥 Top Deals</button>
-
-  <button class="rc-chip">👑 Rolex</button>
-
-  <button class="rc-chip">💎 Jacob&Co</button>
-
-  <button class="rc-chip">🏆 Luxury</button>
-
-  <button class="rc-chip">⌚ Smart Watches</button>
-
-  <button class="rc-chip">🕒 Analog</button>
-
-  <button class="rc-chip">⏱ Digital</button>
-
-</nav>
-
-
-
-
-
+    <nav class="rc-discovery-row container">
+      <button class="rc-chip">🔥 Top Deals</button>
+      <button class="rc-chip">👑 Rolex</button>
+      <button class="rc-chip">💎 Jacob&Co</button>
+      <button class="rc-chip">🏆 Luxury</button>
+      <button class="rc-chip">⌚ Smart Watches</button>
+      <button class="rc-chip">🕒 Analog</button>
+      <button class="rc-chip">⏱ Digital</button>
+    </nav>
   </header>
 
   <main class="rc-main container">
-    <aside class="rc-sidebar">
-      <h2>Filters</h2>
+
+    <!-- FILTER SIDEBAR -->
+    <aside class="rc-sidebar filters-panel" id="filtersPanel">
+  <button class="filter-close" id="closeFilters">✕</button>
+  <h2>Filters</h2>
+
+
       <section class="rc-filter-block">
         <h3>Price</h3>
-        <label><input type="radio" name="price" value="all" checked /> All</label>
-        <label><input type="radio" name="price" value="0-10000" /> Under ₹10,000</label>
-        <label><input type="radio" name="price" value="10000-50000" /> ₹10,000 - ₹50,000</label>
+        <label><input type="radio" name="price" checked /> All</label>
+        <label><input type="radio" name="price" /> Under ₹50,000</label>
+        <label><input type="radio" name="price" /> ₹50,000 - ₹10,00,000</label>
+        <label><input type="radio" name="price" /> ₹10,00,000 - ₹10,00,00,000</label>
       </section>
 
       <section class="rc-filter-block">
         <h3>Brand</h3>
-        <label><input type="checkbox" name="brand" value="Rolex" checked /> Rolex</label>
-        <label><input type="checkbox" name="brand" value="Jacob" /> Jacob&Co</label>
-        <label><input type="checkbox" name="brand" value="Omega" /> Omega</label>
-        <label><input type="checkbox" name="brand" value="Fossil" /> Fossil</label>
+        <label><input type="checkbox" /> Rolex</label>
+        <label><input type="checkbox" /> Jacob&Co</label>
+        <label><input type="checkbox" /> Omega</label>
+        <label><input type="checkbox" /> Fossil</label>
       </section>
     </aside>
 
     <section class="rc-content">
+
       <section class="rc-hero">
         <div class="rc-hero-inner">
           <div class="rc-hero-text">
             <h1>RoCart Watch Fest</h1>
             <p>Exclusive deals on Rolex, Jacob&Co and premium brands.</p>
-            <div class="rc-hero-offer">Up to <strong>40% off</strong> on selected watches</div>
-          </div>
-          <div class="rc-hero-banner">
-            <img src="" alt="" aria-hidden="true" />
+            <div class="rc-hero-offer">
+              Up to <strong>40% off</strong> on selected watches
+            </div>
           </div>
         </div>
       </section>
@@ -86,7 +99,6 @@
       <section class="rc-section rc-topdeals">
         <div class="rc-section-header">
           <h2>Top Deals on Watches</h2>
-          <button class="rc-link-btn" id="view-all">VIEW ALL</button>
         </div>
         <div id="top-deals-grid" class="rc-product-grid"></div>
       </section>
@@ -94,8 +106,61 @@
       <section class="rc-section" id="brand-sections">
         <div class="rc-brand-grid" id="brand-grid"></div>
       </section>
+
     </section>
   </main>
+
+  <!-- ========================= -->
+  <!-- CUSTOMER FEEDBACK SECTION -->
+  <!-- ========================= -->
+  <section class="rc-feedback-section">
+    <div class="rc-feedback-container">
+      <h2>How was your experience?</h2>
+      <p>Your feedback helps us improve our service</p>
+
+     <div class="rc-feedback-stars">
+  <input type="radio" id="star5" name="rating" value="5">
+  <label for="star5">★</label>
+
+  <input type="radio" id="star4" name="rating" value="4">
+  <label for="star4">★</label>
+
+  <input type="radio" id="star3" name="rating" value="3">
+  <label for="star3">★</label>
+
+  <input type="radio" id="star2" name="rating" value="2">
+  <label for="star2">★</label>
+
+  <input type="radio" id="star1" name="rating" value="1">
+  <label for="star1">★</label>
+</div>
+
+      <div class="rc-feedback-options">
+  <label>
+    <input type="radio" name="experience" value="excellent">
+    <span>😍 Excellent</span>
+  </label>
+
+  <label>
+    <input type="radio" name="experience" value="good">
+    <span>😊 Good</span>
+  </label>
+
+  <label>
+    <input type="radio" name="experience" value="average">
+    <span>😐 Average</span>
+  </label>
+
+  <label>
+    <input type="radio" name="experience" value="poor">
+    <span>😟 Poor</span>
+  </label>
+</div>
+
+
+      <button class="rc-feedback-submit">Submit Feedback</button>
+    </div>
+  </section>
 
   <footer class="rc-footer">
     <div class="rc-footer-cols container">
@@ -121,6 +186,56 @@
     </div>
   </footer>
 
+  <!-- CART OVERLAY -->
+  <div class="rc-cart-overlay" id="cartOverlay"></div>
+
+  <!-- CART DRAWER -->
+  <aside class="rc-cart-drawer" id="cartDrawer">
+    <div class="rc-cart-header">
+      <h3>My Cart</h3>
+      <button id="closeCart">✕</button>
+    </div>
+
+    <div class="rc-cart-items" id="cartItems"></div>
+
+    <div class="rc-cart-footer">
+      <div class="rc-cart-total">
+        Total: <span id="cartTotal">₹0</span>
+      </div>
+      <button class="rc-cart-checkout">Place Order</button>
+    </div>
+  </aside>
+
+
   <script src="main.js"></script>
+  <script src="cart.js"></script>
+
+  <!-- FILTER TOGGLE SCRIPT -->
+ <script>
+  const openFilters = document.getElementById("openFilters");
+  const filtersPanel = document.getElementById("filtersPanel");
+  const filterOverlay = document.getElementById("filterOverlay");
+  const closeFilters = document.getElementById("closeFilters"); // 👈 ADD THIS
+
+  function openFilterPanel() {
+    filtersPanel.classList.add("active");
+    filterOverlay.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeFilterPanel() {
+    filtersPanel.classList.remove("active");
+    filterOverlay.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  openFilters.addEventListener("click", openFilterPanel);
+  filterOverlay.addEventListener("click", closeFilterPanel);
+
+  closeFilters.addEventListener("click", closeFilterPanel); // 👈 THIS LINE
+</script>
+
+
+
 </body>
 </html>
