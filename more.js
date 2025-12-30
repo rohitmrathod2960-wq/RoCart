@@ -5,10 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const profileModal = document.getElementById("profileModal");
   const profileOverlay = document.getElementById("profileOverlay");
   const profileClose = document.getElementById("profileClose");
-
-  /* ------------------------
-     DROPDOWN TOGGLE
-  ------------------------ */
+ 
+    //  DROPDOWN TOGGLE  
   moreBtn.addEventListener("click", () => {
     menu.classList.toggle("active");
   });
@@ -19,16 +17,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  /* ------------------------
-     AUTH CHECK
-  ------------------------ */
+    //  AUTH CHECK
   function isLoggedIn() {
     return localStorage.getItem("isLoggedIn") === "true";
   }
 
-  /* ------------------------
-     MENU ACTIONS
-  ------------------------ */
+    //  MENU ACTIONS
 menu.addEventListener("click", e => {
   const action = e.target.dataset.action;
 
@@ -67,10 +61,7 @@ menu.addEventListener("click", e => {
   }
 });
 
-
-  /* ------------------------
-     CLOSE PROFILE
-  ------------------------ */
+    //  CLOSE PROFILE
   function closeProfile() {
     profileModal.classList.remove("active");
     profileOverlay.classList.remove("active");

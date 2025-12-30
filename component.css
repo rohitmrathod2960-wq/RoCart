@@ -25,7 +25,7 @@ img {
   border-radius: 12px;
   position: fixed;
   top: 0;
-  left: -320px; /* hidden */
+  left: -320px; 
   height: 100vh;
   overflow-y: auto;
   transition: left 0.3s ease;
@@ -161,12 +161,26 @@ body{
   transition:transform .16s ease, box-shadow .16s ease;
 }
 .rc-search-btn:active{transform:translateY(1px)}
-.rc-nav-actions{display:flex;gap:10px;align-items:center}
-.rc-btn{background:transparent;border:0;color:white;font-weight:600;padding:6px 8px;cursor:pointer}
-.rc-btn.rc-outline{border:1px solid rgba(255,255,255,0.18);border-radius:8px;padding:6px 12px}
-.rc-btn.rc-cart{background:rgba(255,255,255,0.08);padding:8px 10px;border-radius:8px}
+.rc-nav-actions{
+  display:flex;
+  gap:10px;align-items:center}
+.rc-btn{
+  background:transparent;
+  border:0;
+  color:white;
+  font-weight:600;
+  padding:6px 8px;
+  cursor:pointer}
+.rc-btn.rc-outline{
+  border:1px solid rgba(255,255,255,0.18);
+  border-radius:8px;
+  padding:6px 12px}
+.rc-btn.rc-cart{
+  background:rgba(255,255,255,0.08);
+  padding:8px 10px;
+  border-radius:8px}
 
-/* Discovery / chips */
+/* Discovery */
 .rc-discovery-row{
   display:flex;
   gap:14px;
@@ -222,26 +236,23 @@ nav.rc-discovery-row .rc-chip-active{
 /* Main layout */
 .rc-main{
   display:grid;
-  /* grid-template-columns:260px 1fr; */
+
   grid-template-columns: 1fr;
   gap:18px;
   margin:18px auto 40px;
-  align-items:stretch;     /* 🟩 ADDED — forces children to fill height */
+  align-items:stretch;     
 }
 
-
 /* Sidebar */
-/* Extend sidebar full height */
 .rc-sidebar{
   background:var(--rc-card);
   border-radius:12px;
   padding:14px;
   border:1px solid var(--rc-border);
   box-shadow:0 6px 18px rgba(14,30,80,0.03);
-  height: 100%;             /* 🟩 ADDED */
-  align-self: stretch;      /* 🟩 ADDED — makes sidebar stretch entire grid height */
+  height: 100%;            
+  align-self: stretch;     
 }
-
 
 /* Hero */
 .rc-hero{
@@ -254,30 +265,42 @@ nav.rc-discovery-row .rc-chip-active{
   border:1px solid var(--rc-border);
   box-shadow: 0 6px 20px rgba(14,30,80,0.03);
 }
-.rc-hero-inner{display:flex;gap:18px;align-items:center; width:100%;}
-.rc-hero-text h1{margin:0;font-size:26px}
-.rc-hero-text p{margin:6px 0;color:var(--rc-muted)}
-.rc-hero-offer{margin-top:8px;background:rgba(13,71,161,0.06);display:inline-block;padding:6px 10px;border-radius:8px;font-weight:600;color:var(--rc-blue-dark);}
+.rc-hero-inner{
+  display:flex;
+  gap:18px;
+  align-items:center;
+   width:100%;}
+.rc-hero-text h1{
+  margin:0;
+  font-size:26px}
+.rc-hero-text p{
+  margin:6px 0;
+  color:var(--rc-muted)}
+.rc-hero-offer{
+  margin-top:8px;
+  background:rgba(13,71,161,0.06);
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:8px;
+  font-weight:600;
+  color:var(--rc-blue-dark);}
 
 /* Section */
-.rc-section{background:var(--rc-card);border-radius:12px;padding:16px;border:1px solid var(--rc-border);box-shadow:0 6px 16px rgba(14,30,80,0.03);margin-top:16px}
-.rc-section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.rc-section-header h2{margin:0;font-size:18px}
-/* .rc-link-btn{  
-  background: none;
-  border: none;
-  color: #2874f0;              /* Flipkart blue */
-  /* font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  cursor: pointer;
-  padding: 0;}
- .rc-link-btn:hover {
-  text-decoration: underline;
-} */ */
-
-/* Product grid & card */
-/* .rc-product-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(210px, 1fr));gap:16px} */
+.rc-section{
+  background:var(--rc-card);
+  border-radius:12px; 
+  padding:16px;
+  border:1px solid var(--rc-border);
+  box-shadow:0 6px 16px rgba(14,30,80,0.03);
+  margin-top:16px}
+.rc-section-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:12px}
+.rc-section-header h2{
+  margin:0;
+  font-size:18px}
 .rc-product-grid{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
@@ -288,7 +311,7 @@ nav.rc-discovery-row .rc-chip-active{
    background: #fff;
   border-radius: 12px;
   border: 1px solid #e6ecff;
-  overflow: hidden;        /* 🔥 IMPORTANT */
+  overflow: hidden;        
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -303,7 +326,7 @@ nav.rc-discovery-row .rc-chip-active{
 .product-image{
 
  width: 100%;
-  height: 220px;              /* FIXED height for ALL cards */
+  height: 220px;              
   background: #f9fafb;
   display: flex;
   align-items: center;
@@ -311,7 +334,7 @@ nav.rc-discovery-row .rc-chip-active{
   overflow: hidden;
 }
 .product-info {
-  min-height: 82px;          /* 🔑 fixed text block */
+  min-height: 82px;         
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -319,7 +342,7 @@ nav.rc-discovery-row .rc-chip-active{
 .product-image img{
  width: 100%;
   height: 100%;
-  object-fit: cover;       /* 🔥 Like original website */
+  object-fit: cover;      
   display: block; }
 .product-brand{
   font-size:13px;
@@ -384,11 +407,27 @@ nav.rc-discovery-row .rc-chip-active{
   align-items:center}
 
 /* Footer */
-.rc-footer{background:#0b1622;color:white;padding:18px 0;margin-top:20px}
-.rc-footer-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
-.rc-footer h4{margin:0 0 8px;font-size:13px}
-.rc-footer p{margin:0;color:rgba(255,255,255,0.75)}
-.rc-footer-bottom{border-top:1px solid rgba(255,255,255,0.04);padding-top:8px;margin-top:12px;text-align:center;font-size:13px}
+.rc-footer{
+  background:#0b1622;
+  color:white;
+  padding:18px 0;
+  margin-top:20px}
+.rc-footer-cols{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:12px}
+.rc-footer h4{
+  margin:0 0 8px;
+  font-size:13px}
+.rc-footer p{
+  margin:0;
+  color:rgba(255,255,255,0.75)}
+.rc-footer-bottom{
+  border-top:1px solid rgba(255,255,255,0.04);
+  padding-top:8px;
+  margin-top:12px;
+  text-align:center;
+  font-size:13px}
 
 /* Responsive */
 @media (max-width: 1024px) {
@@ -499,12 +538,11 @@ nav.rc-discovery-row .rc-chip-active{
   object-fit: contain;
   }
 }
-
+ /* desktop */
 #top-deals-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* desktop */
+  grid-template-columns: repeat(4, 1fr);
   gap: 16px;
-  /* padding: 16px; */
 }
 
 
@@ -530,7 +568,7 @@ nav.rc-discovery-row .rc-chip-active{
 }
 
 .rc-feedback-container {
-    max-width: 1200px;     /* wide like product sections */
+    max-width: 1200px;     
   margin: 0 auto;
   background: #fff;
   padding: 32px 40px;
@@ -547,7 +585,7 @@ nav.rc-discovery-row .rc-chip-active{
 .rc-feedback-section,
 .rc-feedback-container {
   position: relative;
-  z-index: 10000; /* higher than overlays */
+  z-index: 10000;
 }
 
 .rc-feedback-container h2 {
@@ -601,15 +639,11 @@ nav.rc-discovery-row .rc-chip-active{
   resize: vertical;
   min-height: 80px;
 }
-
 .rc-feedback-text:focus {
   outline: none;
   border-color: #2874f0;
   box-shadow: 0 0 0 3px rgba(40, 116, 240, 0.12);
 }
-
-
-
 .rc-feedback-text {
   width: 100%;
   padding: 12px;
@@ -619,12 +653,10 @@ nav.rc-discovery-row .rc-chip-active{
   font-size: 14px;
   margin-bottom: 16px;
 }
-
 .rc-feedback-text:focus {
   outline: none;
   border-color: #2874f0;
 }
-
 .rc-feedback-submit {
   width: 100%;
   background: #2874f0;
@@ -636,12 +668,9 @@ nav.rc-discovery-row .rc-chip-active{
   border-radius: 12px;
   cursor: pointer;
 }
-
 .rc-feedback-submit:hover {
   background: #1f5fd8;
 }
-
-
 .rc-feedback-success {
   margin-top: 12px;
   color: #16a34a;
@@ -652,7 +681,6 @@ nav.rc-discovery-row .rc-chip-active{
   grid-template-columns: repeat(4, 1fr);
   gap: 14px;
 }
-
 .rc-feedback-options label {
    display: flex;
   align-items: center;
@@ -665,52 +693,44 @@ nav.rc-discovery-row .rc-chip-active{
   font-size: 15px;
   transition: all 0.2s ease;
 }
-
 .rc-feedback-options input {
     display: none;
 }
-
 .rc-feedback-options label:hover {
  border-color: #2874f0;
   background: #f0f7ff;
 }
-
 .rc-feedback-options label {
   font-weight: 500;
 }
-
 .rc-feedback-options input:checked + span {
   font-weight: 700;
 }
-
 .rc-feedback-options input:checked + span {
   color: #2874f0;
 }
-
 .rc-feedback-options input:checked + span::before {
   content: "";
 }
-
 /* Cart Drawer */
 .rc-cart-drawer {
-  position: fixed;          /* 🔴 IMPORTANT */
-  top: 0;                   /* 🔴 ALWAYS start from top */
+  position: fixed;         
+  top: 0;                  
   right: -420px;
   width: 380px;
-  height: 100vh;            /* 🔴 full screen height */
+  height: 100vh;            
   background: #fff;
-  z-index: 9999;            /* 🔴 above everything */
+  z-index: 9999;           
   display: flex;
   flex-direction: column;
   box-shadow: -12px 0 40px rgba(0,0,0,0.2);
   transition: right 0.3s ease;
+ 
 }
 
 .rc-cart-drawer.active {
   right: 0;
 }
-
-
 /* Overlay */
 .rc-cart-overlay {
   position: fixed;
@@ -737,9 +757,6 @@ nav.rc-discovery-row .rc-chip-active{
 .rc-cart-overlay.active {
   pointer-events: auto;
 }
-
-
-
 /* Header */
 .rc-cart-header {
   padding: 16px;
@@ -799,24 +816,6 @@ nav.rc-discovery-row .rc-chip-active{
   cursor: pointer;
 }
 
-/* Cart Count */
-/* .rc-cart-count {
-  /* Cart count badge */
-   /* box-shadow: 0 0 0 2px rgba(0,0,0,0.05);
-  background: #ffd600;     /* yellow circle */
-  /* color: #e11d48;          /* red number */
-  /* font-size: 12px;
-  font-weight: 700;
-  padding: 2px 7px;
-  border-radius: 50%;
-  margin-left: 6px;
-  display: inline-block;
-  min-width: 18px;
-  text-align: center;
-} */ */ */ */
-
-
-
 /* Add to Cart button */
 .rc-add-cart {
   width: 100%;
@@ -851,8 +850,8 @@ nav.rc-discovery-row .rc-chip-active{
   display: inline-block;
 }
 .rc-btn.rc-cart .rc-cart-count {
-  background-color: #ffd600 !important; /* yellow */
-  color: #131212 !important;            /* red */
+  background-color: #ffd600 !important;
+  color: #131212 !important;           
   border-radius: 50%;
   font-weight: 700;
   font-size: 12px;
@@ -862,7 +861,6 @@ nav.rc-discovery-row .rc-chip-active{
 }
 /* Product action area */
 .rc-product-actions {
-  /* margin-top: 12px; */
   margin-top: auto;
 }
 
@@ -890,11 +888,10 @@ nav.rc-discovery-row .rc-chip-active{
 
 /* When item is added */
 .rc-cart-plus.added {
-  background: #16a34a;   /* green */
+  background: #16a34a;   
   color: #fff;
 }
-/* LOGIN MODAL */
-/* ===== LOGIN MODAL OVERLAY ===== */
+/* LOGIN MODAL OVDERLAY*/
 .rc-modal-overlay {
   position: fixed;
   inset: 0;
@@ -908,7 +905,7 @@ nav.rc-discovery-row .rc-chip-active{
   display: block;
 }
 
-/* ===== LOGIN MODAL ===== */
+/* LOGIN MODAL */
 .rc-modal {
   position: fixed;
   top: 50%;
@@ -973,7 +970,7 @@ nav.rc-discovery-row .rc-chip-active{
   color: #6b7280;
 }
 
-/* ===== FORM ===== */
+/*  FORM  */
 .rc-login-form {
   display: flex;
   flex-direction: column;
@@ -1029,7 +1026,7 @@ nav.rc-discovery-row .rc-chip-active{
 .rc-login-submit:active {
   transform: translateY(0);
 }
-/* ===== MORE DROPDOWN ===== */
+/*  MORE DROPDOWN */
 .rc-more-menu {
   position: absolute;
   top: 52px;
@@ -1081,7 +1078,7 @@ nav.rc-discovery-row .rc-chip-active{
 .rc-more-item + .rc-more-item {
   margin-top: 2px;
 }
-/* ===== PROFILE ===== */
+/*  PROFILE  */
 .rc-profile-box {
   display: flex;
   align-items: center;
@@ -1118,18 +1115,18 @@ nav.rc-discovery-row .rc-chip-active{
   margin-top: 6px;
   font-size: 13px;
   font-weight: 500;
-  color: #6b7280; /* visible grey */
+  color: #6b7280; 
 }
 /* Wrapper becomes positioning anchor */
 .rc-more-wrapper {
-  position: relative;   /* 🔥 THIS FIXES EVERYTHING */
+  position: relative;   
 }
 
 /* Dropdown */
 .rc-more-menu {
   position: absolute;
-  top: 100%;            /* directly below More */
-  left: 0;              /* aligned with More button */
+  top: 100%;           
+  left: 0;              
   margin-top: 8px;
 
   width: 180px;
@@ -1161,10 +1158,8 @@ nav.rc-discovery-row .rc-chip-active{
 .rc-more-item:hover {
   background: #f1f5ff;
 }
-/* =========================
-   PROFILE MODAL – FINAL FIX
-========================= */
 
+   /* PROFILE MODAL – FINAL FIX */
 .rc-profile-modal {
   max-width: 420px;
   width: 90%;
@@ -1231,4 +1226,19 @@ nav.rc-discovery-row .rc-chip-active{
 .rc-profile-actions .rc-danger:hover {
   background: #dc2626;
   color: #fff;
+}
+.place-order-btn {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  background: #2f6fed;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.place-order-btn:disabled {
+  background: #9db8f5;
+  cursor: not-allowed;
 }

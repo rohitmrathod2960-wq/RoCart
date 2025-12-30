@@ -1,11 +1,6 @@
-// ===============================
 // CART STATE
-// ===============================
 let cart = [];
-
-// ===============================
 // DOM ELEMENTS (SAFE LOAD)
-// ===============================
 document.addEventListener("DOMContentLoaded", () => {
   const cartDrawer = document.getElementById("cartDrawer");
   const cartOverlay = document.getElementById("cartOverlay");
@@ -15,9 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const openCartBtn = document.getElementById("openCart");
   const closeCartBtn = document.getElementById("closeCart");
 
-  // ===============================
+ 
   // OPEN / CLOSE CART
-  // ===============================
   if (openCartBtn) {
     openCartBtn.addEventListener("click", () => {
       cartDrawer.classList.add("active");
@@ -40,9 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.style.overflow = "";
   }
 
-  // ===============================
   // ADD TO CART (EVENT DELEGATION)
-  // ===============================
   document.addEventListener("click", e => {
  if (e.target.classList.contains("rc-cart-plus")) {
   const btn = e.target;
@@ -59,14 +51,9 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.innerHTML = "🛒 Add to Cart";
   }, 1200);
 }
-
-
-
   });
 
-  // ===============================
   // ADD ITEM
-  // ===============================
   function addToCart(id) {
     const product = products.find(p => p.id == id);
     if (!product) return;
@@ -81,10 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     updateCart();
   }
-
-  // ===============================
   // UPDATE CART UI
-  // ===============================
   function updateCart() {
     cartItemsEl.innerHTML = "";
 
@@ -116,10 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
     cartTotalEl.textContent = "₹" + total.toLocaleString();
     cartCountEl.textContent = count;
   }
-
-  // ===============================
   // REMOVE ITEM
-  // ===============================
   document.addEventListener("click", e => {
     if (e.target.classList.contains("rc-cart-remove")) {
       const id = e.target.dataset.id;

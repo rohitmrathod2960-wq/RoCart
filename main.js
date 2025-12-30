@@ -1,13 +1,11 @@
-// ===============================
-// Product Data (with real images)
-// ===============================
+
 const products = [
   {
     id: 1,
     brand: "Rolex",
     title: "Rolex Submariner Date Automatic, 40 mm",
-    rating: 4.8,
-    ratingCount: 132,
+    // rating: 4.8,
+    // ratingCount: 132,
     price: 980000,
     oldPrice: 1200000,
     tag: "Top Deal",
@@ -18,8 +16,8 @@ const products = [
     id: 2,
     brand: "Rolex",
     title: "Rolex DeepSea",
-    rating: 4.8,
-    ratingCount: 18,
+    // rating: 4.8,
+    // ratingCount: 18,
     price: 1250000,
     oldPrice: 1500000,
     tag: "Top Deal",
@@ -30,8 +28,8 @@ const products = [
     id: 3,
     brand: "Rolex",
     title: "Rolex Red Face",
-    rating: 4.8,
-    ratingCount: 118,
+    // rating: 4.8,
+    // ratingCount: 118,
     price: 780000,
     oldPrice: 950000,
     tag: "Top Deal",
@@ -42,8 +40,8 @@ const products = [
     id: 4,
     brand: "Rolex",
     title: "Rolex GMT-Master II, 40 mm",
-    rating: 4.8,
-    ratingCount: 118,
+    // rating: 4.8,
+    // ratingCount: 118,
     price: 1150000,
     oldPrice: 1350000,
     tag: "Top Deal",
@@ -54,8 +52,8 @@ const products = [
     id: 5,
     brand: "Jacob & Co",
     title: "Jacob Astronomia Solar Skeleton dial, tourbillon",
-    rating: 4.7,
-    ratingCount: 21,
+    // rating: 4.7,
+    // ratingCount: 21,
     price: 32000000,
     oldPrice: 36000000,
     tag: "Luxury",
@@ -66,8 +64,8 @@ const products = [
     id: 6,
     brand: "Jacob & Co",
     title: "Jacob Tim Brady",
-    rating: 4.7,
-    ratingCount: 21,
+    // rating: 4.7,
+    // ratingCount: 21,
     price: 28000000,
     oldPrice: 32000000,
     tag: "Luxury",
@@ -78,8 +76,8 @@ const products = [
     id: 7,
     brand: "Jacob & Co",
     title: "Co. USD Yellow Diamond",
-    rating: 4.7,
-    ratingCount: 21,
+    // rating: 4.7,
+    // ratingCount: 21,
     price: 45000000,
     oldPrice: 52000000,
     tag: "Luxury",
@@ -90,8 +88,8 @@ const products = [
     id: 8,
     brand: "Jacob & Co",
     title: "acob & Co. Bugatti Chiron Tourbillon Titanium",
-    rating: 4.7,
-    ratingCount: 21,
+    // rating: 4.7,
+    // ratingCount: 21,
     price: 38000000,
     oldPrice: 43000000,
     tag: "Luxury",
@@ -103,8 +101,8 @@ const products = [
     id: 9,
     brand: "Omega",
     title: "Omega Seamaster Diver 300M Co-Axial Master Chronometer",
-    rating: 4.6,
-    ratingCount: 89,
+    // rating: 4.6,
+    // ratingCount: 89,
     price: 420000,
     oldPrice: 460000,
     tag: "Analog",
@@ -115,8 +113,8 @@ const products = [
     id: 10,
     brand: "Omega",
     title: "Rare Blue Moon with Omega",
-    rating: 4.6,
-    ratingCount: 89,
+    // rating: 4.6,
+    // ratingCount: 89,
     price: 520000,
     oldPrice: 580000,
     tag: "Analog",
@@ -127,8 +125,8 @@ const products = [
     id: 11,
     brand: "Omega",
     title: "Omega SpeedMaster MoonPhase",
-    rating: 4.6,
-    ratingCount: 89,
+    // rating: 4.6,
+    // ratingCount: 89,
     price: 780000,
     oldPrice: 860000,
     tag: "Analog",
@@ -139,8 +137,8 @@ const products = [
     id: 12,
     brand: "Omega",
     title: "Omega Seamaster Professional 300M Quartz Black Steel Divers Watch",
-    rating: 4.6,
-    ratingCount: 89,
+    // rating: 4.6,
+    // ratingCount: 89,
     price: 420000,
     oldPrice: 460000,
     tag: "Analog",
@@ -151,8 +149,8 @@ const products = [
     id: 13,
     brand: "Fossil",
     title: "Fossil Watch for Men Decker, Quartz Chronograph Movement, 44 mm Silver",
-    rating: 4.2,
-    ratingCount: 512,
+    // rating: 4.2,
+    // ratingCount: 512,
     price: 21995,
     oldPrice: 29995,
     tag: "Smart",
@@ -163,8 +161,8 @@ const products = [
     id: 14,
     brand: "Fossil",
     title: "Fossil Chronograph Dean Brown Leather Strap Watch 45mm Fs4788",
-    rating: 4.2,
-    ratingCount: 512,
+    // rating: 4.2,
+    // ratingCount: 512,
     price: 23995,
     oldPrice: 31995,
     tag: "Smart",
@@ -175,8 +173,8 @@ const products = [
     id: 15,
     brand: "Fossil",
     title: "Fossil Nate Chronograph Black Stainless Steel Watch",
-    rating: 4.2,
-    ratingCount: 512,
+    // rating: 4.2,
+    // ratingCount: 512,
     price: 24995,
     oldPrice: 32995,
     tag: "Smart",
@@ -187,27 +185,24 @@ const products = [
     id: 16,
     brand: "Fossil",
     title: "Fossil Machine Stainless Steel Smoke Chronograph Watch",
-    rating: 4.2,
-    ratingCount: 512,
+    // rating: 4.2,
+    // ratingCount: 512,
     price: 25995,
     oldPrice: 33995,
     tag: "Smart",
     category: "smart",
     img: "https://qvc.scene7.com/is/image/QVC/j/03/j438703.001?wid=960&fmt=webp&qlt=60"
-  }
+  },
+    
 ];
 
 
-// ===============================
-// Format INR
-// ===============================
+// INR Format
 function formatINR(n) {
   return "₹" + n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-// ===============================
 // Product Card Generator
-// ===============================
 function createCard(p) {
   const el = document.createElement("div");
   el.className = "product-card";
@@ -235,20 +230,14 @@ function createCard(p) {
   return el;
 }
 
-
-
-// ===============================
 // Render Product Grid
-// ===============================
 function renderGrid(list) {
   const grid = document.getElementById("top-deals-grid");
   grid.innerHTML = "";
   list.forEach(p => grid.appendChild(createCard(p)));
 }
 
-// ===============================
 // Render Brand Showcase Cards
-// ===============================
 function renderBrands(list) {
   const grid = document.getElementById("brand-grid");
   grid.innerHTML = "";
@@ -280,14 +269,10 @@ function renderBrands(list) {
   });
 }
 
-// ===============================
 // INIT — Run on page load
-// ===============================
 document.addEventListener("DOMContentLoaded", () => {
   renderGrid(products);
   renderBrands(products);
-
-  // (normalization removed) — chips will use existing category/brand values
 
   // --- Filter & Search state ---
   let activeSearch = "";

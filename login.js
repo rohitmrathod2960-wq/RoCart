@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // 🔥 THIS FIXES REFRESH ISSUE
+  //  REFRESH 
   updateAuthUIOnLoad();
   const loginModal = document.getElementById("loginModal");
   const loginOverlay = document.getElementById("loginOverlay");
@@ -21,9 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const profileName = document.getElementById("profileName");
   const profileEmail = document.getElementById("profileEmail");
 
-  /* ------------------------
-     AUTH HELPERS
-  ------------------------ */
+  
+    //  AUTH HELPERS
   function isLoggedIn() {
     return localStorage.getItem("isLoggedIn") === "true";
   }
@@ -43,10 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.removeItem("userEmail");
     localStorage.removeItem("loginTime");
   }
-
-  /* ------------------------
-     UI UPDATE
-  ------------------------ */
+    //  UI UPDATE
   function updateAuthUI() {
     if (isLoggedIn()) {
       loginBtn.textContent = "Logout";
@@ -60,10 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
       loginBtn.textContent = "Login";
     }
   }
-
-  /* ------------------------
-     MODAL CONTROL
-  ------------------------ */
+    //  MODAL CONTROLS
   function openLogin() {
     loginModal.classList.add("active");
     loginOverlay.classList.add("active");
@@ -73,10 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
     loginModal.classList.remove("active");
     loginOverlay.classList.remove("active");
   }
-
-  /* ------------------------
-     HEADER LOGIN BUTTON
-  ------------------------ */
+    //  HEADER LOGIN BUTTON
   loginBtn.addEventListener("click", () => {
     if (!isLoggedIn()) {
       openLogin();
@@ -86,9 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  /* ------------------------
-     LOGIN FORM SUBMIT
-  ------------------------ */
+    //  LOGIN FORM SUBMIT
   loginForm.addEventListener("submit", e => {
     e.preventDefault();
 
@@ -108,8 +96,6 @@ document.addEventListener("DOMContentLoaded", () => {
   closeLogin.addEventListener("click", closeLoginModal);
   loginOverlay.addEventListener("click", closeLoginModal);
 
-  /* ------------------------
-     INIT
-  ------------------------ */
+    //  INIT
   updateAuthUI();
 });

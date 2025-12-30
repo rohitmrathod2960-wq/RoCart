@@ -27,8 +27,7 @@
           id="search-input"
           class="rc-search-input"
           type="search"
-          placeholder="Search for watches, brands and more"
-        />
+          placeholder="Search for watches, brands and more"/>
         <button type="submit" class="rc-search-btn" aria-label="Search">
           Search
         </button>
@@ -51,7 +50,7 @@
 
 
 
-        <!-- ✅ SINGLE CART BUTTON (HEADER) -->
+        <!-- SINGLE CART BUTTON (HEADER) -->
         <button class="rc-btn rc-cart" id="openCart">
           Cart <span class="rc-cart-count" id="cartCount">0</span>
         </button>
@@ -78,10 +77,10 @@
       <section class="rc-hero">
         <div class="rc-hero-inner">
           <div class="rc-hero-text">
-            <h1>RoCart Watch Fest</h1>
-            <p>Exclusive deals on Rolex, Jacob&Co and premium brands.</p>
+            <h1>RoCart New Year Watch Fest</h1>
+            <p>Start the New Year in timeless style. Celebrate luxury with exclusive Rolex, Jacob & Co. and premium watch offers.</p>
             <div class="rc-hero-offer">
-              Up to <strong>40% off</strong> on selected watches
+             New Year Special — Up to <strong>40% off</strong> on selected watches
             </div>
           </div>
         </div>
@@ -100,10 +99,8 @@
 
     </section>
   </main>
-
-  <!-- ========================= -->
-  <!-- CUSTOMER FEEDBACK SECTION -->
-  <!-- ========================= -->
+ 
+  <!-- CUSTOMER FEEDBACK SECTION -->    
   <section class="rc-feedback-section">
     <div class="rc-feedback-container">
       <h2>How was your experience?</h2>
@@ -124,6 +121,7 @@
 
   <input type="radio" id="star1" name="rating" value="1">
   <label for="star1">★</label>
+  
 </div>
 
 <textarea
@@ -192,7 +190,7 @@
         <div class="rc-contact-item">Email: <a href="mailto:support@rocart.example">support@rocart.example</a></div>
         <div class="rc-contact-item">Phone: <a href="tel:+911234567890">+91 12 3456 7890</a></div>
         <div class="rc-contact-item">Hours: Mon–Fri, 10:00–18:00 IST</div>
-        <div style="margin-top:8px">
+        <div style="margin-top: 15px">
           <a class="rc-contact-cta" href="mailto:support@rocart.example">Contact Support</a>
         </div>
       </div>
@@ -202,7 +200,7 @@
     </div>
   </footer>
 
-  <!-- FILTER PANEL (moved out of main; opens from header button) -->
+  <!-- FILTER PANEL (moved out of main opens from header button) -->
   <aside class="filters-panel" id="filtersPanel" aria-hidden="true">
     <button class="filter-close" id="closeFilters">✕</button>
     <h2>Filters</h2>
@@ -236,13 +234,14 @@
 
     <div class="rc-cart-footer">
       <div class="rc-cart-total">
-        Total: <span id="cartTotal">₹0</span>
+       <strong> Total: </strong>  <span id="cartTotal"><strong> ₹0 </strong></span>
       </div>
-      <button class="rc-cart-checkout">Place Order</button>
+      <button id="placeOrderBtn" class="place-order-btn">
+  <strong>Place Order</strong>
+</button>
+
     </div>
   </aside>
-
-
 
 <!-- PROFILE MODAL -->
 <div class="rc-modal-overlay" id="profileOverlay"></div>
@@ -282,7 +281,7 @@
   <script src="more.js"></script>
   <script src="login.js"></script>
 
-  <!-- FILTER TOGGLE SCRIPT (guarded) -->
+  <!-- FILTER TOGGLE SCRIPT  -->
   <script>
     (function(){
       const openFilters = document.getElementById("openFilters");
@@ -312,7 +311,7 @@
     })();
   </script>
 
-<!-- FEEDBACK INTERACTIONS: auto-star + thank-you popup -->
+<!-- FEEDBACK : auto-star + thank-you popup -->
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const experienceRadios = Array.from(document.querySelectorAll('input[name="experience"]'));
@@ -414,28 +413,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<!-- LOGIN SUBMIT BUTTON WIRING
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const loginForm = document.getElementById('loginForm');
-  const loginSubmit = document.getElementById('loginSubmit');
-  if (loginSubmit && loginForm) {
-    loginSubmit.addEventListener('click', (e) => {
-      // If this is a native submit button (type="submit"), let the browser handle validation
-      // Only trigger programmatic submission when the button is non-submit (type="button")
-      if (loginSubmit.type === 'button') {
-        e.preventDefault();
-        if (typeof loginForm.requestSubmit === 'function') {
-          loginForm.requestSubmit();
-        } else {
-          loginForm.submit();
-        }
-      }
-    });
-  }
-});
-</script> -->
-
 <!-- LOGIN MODAL OVERLAY -->
 <div class="rc-modal-overlay" id="loginOverlay"></div>
 
@@ -469,7 +446,7 @@ document.addEventListener('DOMContentLoaded', () => {
       />
     </div>
 
-    <!-- IMPORTANT: type="submit" -->
+    <!-- Sign in -->
     <button type="submit" class="rc-login-submit">
       Sign In
     </button>
@@ -481,7 +458,6 @@ document.addEventListener('DOMContentLoaded', () => {
 <!-- PROFILE MODAL OVERLAY -->
 <div class="rc-modal-overlay" id="profileOverlay"></div>
 
-<!-- PROFILE MODAL -->
 <!-- PROFILE MODAL -->
 <div class="rc-modal" id="profileModal">
   <button class="rc-modal-close" id="profileClose">✕</button>
@@ -500,7 +476,59 @@ document.addEventListener('DOMContentLoaded', () => {
   <button id="profileLogout" class="rc-btn rc-outline">Logout</button>
 
 </div>
+<script>
+  const placeOrderBtn = document.getElementById("placeOrderBtn");
 
+  // Example cart (replace with your actual cart source)
+  let cartItems = JSON.parse(localStorage.getItem("cart")) || [
+    { name: "Rolex GMT-Master II", price: 1150000, qty: 1 }
+  ];
+
+  placeOrderBtn.addEventListener("click", () => {
+    // 1. Validate cart
+    if (cartItems.length === 0) {
+      alert("Your cart is empty");
+      return;
+    }
+
+    // 2. Disable button + loading
+    placeOrderBtn.disabled = true;
+    placeOrderBtn.textContent = "Placing order...";
+
+    // 3. Fake API delay (professional feel)
+    setTimeout(() => {
+      // 4. Create fake order
+      const order = {
+        orderId: "ORD-" + Date.now(),
+        items: cartItems,
+        total: cartItems.reduce(
+          (sum, item) => sum + item.price * item.qty,
+          0
+        ),
+        date: new Date().toLocaleString()
+      };
+
+      // 5. Save order locally
+      localStorage.setItem("lastOrder", JSON.stringify(order));
+
+      // 6. Clear cart
+      localStorage.removeItem("cart");
+      cartItems = [];
+
+      // 7. Success feedback
+      placeOrderBtn.textContent = "Order Placed ✓";
+
+      // Optional redirect after success
+      setTimeout(() => {
+        alert(
+          `Order Placed Successfully!\n\nOrder ID: ${order.orderId}`
+        );
+        location.reload(); 
+      }, 600);
+
+    }, 1500); 
+  });
+</script>
 
 
 </body>
