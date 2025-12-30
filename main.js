@@ -220,26 +220,21 @@ function createCard(p) {
     <div class="product-brand">${p.brand}</div>
     <div class="product-title">${p.title}</div>
 
-    <div class="rating-row">
-      <div class="rating-badge">${p.rating} ★</div>
-      <div>${p.ratingCount} ratings</div>
-    </div>
-
     <div class="price-row">
       <div class="price-current">₹${p.price.toLocaleString()}</div>
       <div class="price-old">₹${p.oldPrice.toLocaleString()}</div>
     </div>
 
-    <!-- ✅ CART + BUTTON -->
     <div class="rc-product-actions">
       <button class="rc-cart-plus" data-id="${p.id}">
-  🛒 Add to Cart
-</button>
+        🛒 Add to Cart
+      </button>
     </div>
   `;
 
   return el;
 }
+
 
 
 // ===============================
@@ -292,7 +287,87 @@ document.addEventListener("DOMContentLoaded", () => {
   renderGrid(products);
   renderBrands(products);
 
-  // Chip filters
+  // (normalization removed) — chips will use existing category/brand values
+
+  // --- Filter & Search state ---
+  let activeSearch = "";
+
+  // Utility: read visible label text for an input inside a label
+  function labelTextFor(input) {
+    if (!input || !input.parentElement) return "";
+    return input.parentElement.innerText.replace(/\n/g, " ").trim();
+  }
+
+  // Parse INR numbers from a label like "₹50,000 - ₹1,000,000"
+  function numbersFromLabel(text) {
+    const matches = text.match(/(\d[\d,]*)/g);
+    if (!matches) return [];
+    return matches.map(s => Number(s.replace(/,/g, "")));
+  }
+
+  function applyFiltersAndRender() {
+    const panel = document.getElementById("filtersPanel");
+    // When user uses the sidebar filters, clear any active discovery chip
+    document.querySelectorAll("nav.rc-discovery-row .rc-chip").forEach(c => c.classList.remove("rc-chip-active"));
+    let list = products.slice();
+
+    if (panel) {
+      // Price radio (use explicit value when available)
+      const priceRadio = panel.querySelector('input[type="radio"][name="price"]:checked');
+      if (priceRadio) {
+        const v = priceRadio.value || labelTextFor(priceRadio).toLowerCase();
+        if (v && v !== 'all') {
+          if (v === 'under-50000') {
+            list = list.filter(p => p.price < 50000);
+          } else if (v === '50000-1000000') {
+            list = list.filter(p => p.price >= 50000 && p.price <= 1000000);
+          } else if (v === '1000000-10000000') {
+            list = list.filter(p => p.price >= 1000000 && p.price <= 10000000);
+          } else {
+            // fallback to parsing label text
+            const txt = String(v).toLowerCase();
+            const nums = numbersFromLabel(txt);
+            if (txt.includes('under') && nums.length >= 1) {
+              const max = nums[0];
+              list = list.filter(p => p.price < max);
+            } else if (nums.length >= 2) {
+              const low = nums[0];
+              const high = nums[1];
+              list = list.filter(p => p.price >= low && p.price <= high);
+            }
+          }
+        }
+      }
+
+      // Brand checkboxes
+      const brandChecks = Array.from(panel.querySelectorAll('input[type="checkbox"]'));
+      const selectedBrands = brandChecks
+        .filter(cb => cb.checked)
+        .map(cb => (cb.value && cb.value.trim()) ? cb.value.trim() : (cb.dataset && cb.dataset.brand) ? cb.dataset.brand.trim() : labelTextFor(cb));
+
+      if (selectedBrands.length > 0) {
+        list = list.filter(p => selectedBrands.includes(p.brand));
+      }
+    }
+
+    // Apply search on top of filters
+    if (activeSearch && activeSearch.length > 0) {
+      const q = activeSearch.toLowerCase();
+      list = list.filter(p => (p.title + " " + p.brand + " " + p.tag).toLowerCase().includes(q));
+    }
+
+    renderGrid(list);
+  }
+
+  // Wire filter inputs
+  const panel = document.getElementById("filtersPanel");
+  if (panel) {
+    panel.addEventListener('change', () => {
+      applyFiltersAndRender();
+    });
+  }
+
+  // Chip filters (keeps original UI behaviour but now uses applyFiltersAndRender)
   document.querySelectorAll("nav.rc-discovery-row .rc-chip").forEach(chip => {
     chip.addEventListener("click", () => {
       document.querySelectorAll("nav.rc-discovery-row .rc-chip")
@@ -302,34 +377,49 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const sect = chip.dataset.section;
       if (!sect || sect === "all") {
-        renderGrid(products);
+        // clear filters and search
+        // uncheck brands
+        if (panel) {
+          panel.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+          const r = panel.querySelectorAll('input[type="radio"][name="price"]');
+          if (r && r[0]) r[0].checked = true;
+        }
+        activeSearch = "";
+        applyFiltersAndRender();
       } else {
+        // filter by category
         renderGrid(products.filter(p => p.category === sect));
       }
     });
   });
 
-  // Search
+  // Search — now integrates with filters
   const form = document.getElementById("search-form");
-  form.addEventListener("submit", evt => {
-    evt.preventDefault();
+  const searchInput = document.getElementById("search-input");
 
-    const q = document
-      .getElementById("search-input")
-      .value.trim()
-      .toLowerCase();
+  // Helper to update search state and re-render
+  function updateSearchAndRender() {
+    activeSearch = searchInput && searchInput.value ? searchInput.value.trim() : "";
+    applyFiltersAndRender();
+  }
 
-    if (!q) {
-      renderGrid(products);
-    } else {
-      renderGrid(
-        products.filter(p =>
-          (p.title + " " + p.brand + " " + p.tag)
-            .toLowerCase()
-            .includes(q)
-        )
-      );
-    }
-  });
+  // Submit handler (keeps original behaviour)
+  if (form) {
+    form.addEventListener("submit", evt => {
+      evt.preventDefault();
+      updateSearchAndRender();
+    });
+  }
+
+  // Live search: debounce input for a professional, responsive UX
+  if (searchInput) {
+    let debounceTimer = null;
+    searchInput.addEventListener("input", () => {
+      if (debounceTimer) clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        updateSearchAndRender();
+      }, 250);
+    });
+  }
 });
 

@@ -14,9 +14,8 @@
   <header class="rc-header">
     <div class="rc-navbar container">
 
-      <!-- FILTER TOGGLE BUTTON -->
+      <!-- FILTER TOGGLE BUTTON (restored) -->
       <button class="filter-toggle" id="openFilters">☰ Filters</button>
-
 
       <div class="rc-logo-area">
         <div class="rc-logo">RoCart</div>
@@ -36,8 +35,21 @@
       </form>
 
       <div class="rc-nav-actions">
-        <button class="rc-btn rc-outline">Login</button>
-        <button class="rc-btn rc-text">More</button>
+        <button id="loginBtn" class="rc-btn rc-outline">Login</button>
+
+        <div class="rc-more-wrapper">
+  <button class="rc-btn rc-text" id="moreBtn">
+    More ▾
+  </button>
+
+  <div class="rc-more-menu" id="moreMenu">
+    <button class="rc-more-item" data-action="profile">Profile</button>
+    <button class="rc-more-item" data-action="orders">My Orders</button>
+    <button class="rc-more-item" data-action="help">Help</button>
+  </div>
+</div>
+
+
 
         <!-- ✅ SINGLE CART BUTTON (HEADER) -->
         <button class="rc-btn rc-cart" id="openCart">
@@ -50,37 +62,16 @@
       <button class="rc-chip">🔥 Top Deals</button>
       <button class="rc-chip">👑 Rolex</button>
       <button class="rc-chip">💎 Jacob&Co</button>
+       <button class="rc-chip">🌙 Omega</button>
+        <button class="rc-chip">⌚ Fossil</button>
       <button class="rc-chip">🏆 Luxury</button>
-      <button class="rc-chip">⌚ Smart Watches</button>
       <button class="rc-chip">🕒 Analog</button>
       <button class="rc-chip">⏱ Digital</button>
+      
     </nav>
   </header>
 
-  <main class="rc-main container">
-
-    <!-- FILTER SIDEBAR -->
-    <aside class="rc-sidebar filters-panel" id="filtersPanel">
-  <button class="filter-close" id="closeFilters">✕</button>
-  <h2>Filters</h2>
-
-
-      <section class="rc-filter-block">
-        <h3>Price</h3>
-        <label><input type="radio" name="price" checked /> All</label>
-        <label><input type="radio" name="price" /> Under ₹50,000</label>
-        <label><input type="radio" name="price" /> ₹50,000 - ₹10,00,000</label>
-        <label><input type="radio" name="price" /> ₹10,00,000 - ₹10,00,00,000</label>
-      </section>
-
-      <section class="rc-filter-block">
-        <h3>Brand</h3>
-        <label><input type="checkbox" /> Rolex</label>
-        <label><input type="checkbox" /> Jacob&Co</label>
-        <label><input type="checkbox" /> Omega</label>
-        <label><input type="checkbox" /> Fossil</label>
-      </section>
-    </aside>
+  <main class="rc-main container no-sidebar">
 
     <section class="rc-content">
 
@@ -135,6 +126,14 @@
   <label for="star1">★</label>
 </div>
 
+<textarea
+  class="rc-feedback-text"
+  id="feedbackText"
+  placeholder="Tell us more about your experience (optional)"
+  rows="3"
+></textarea>
+
+
       <div class="rc-feedback-options">
   <label>
     <input type="radio" name="experience" value="excellent">
@@ -162,29 +161,66 @@
     </div>
   </section>
 
-  <footer class="rc-footer">
+ <footer class="rc-footer" id="siteFooter">
+
     <div class="rc-footer-cols container">
       <div>
         <h4>ABOUT ROCART</h4>
-        <p>RoCart is a conceptual watches-only storefront inspired by modern e-commerce design.</p>
+        <p>RoCart curates premium timepieces from established and independent makers. We focus on authenticity, selective inventory, and concierge-style service for collectors and enthusiasts.</p>
       </div>
+
       <div>
         <h4>HELP</h4>
-        <p>Payments | Shipping | Returns</p>
+        <ul>
+          <li><a href="#">Payments</a></li>
+          <li><a href="#">Shipping</a></li>
+          <li><a href="#">Returns</a></li>
+        </ul>
       </div>
+
       <div>
         <h4>POLICY</h4>
-        <p>Return Policy | Terms | Privacy</p>
+        <ul >
+          <li><a href="#">Return Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
       </div>
-      <div>
+
+      <div id="contactSection">
         <h4>CONTACT</h4>
-        <p>support@rocart.example</p>
+        <div class="rc-contact-item">Email: <a href="mailto:support@rocart.example">support@rocart.example</a></div>
+        <div class="rc-contact-item">Phone: <a href="tel:+911234567890">+91 12 3456 7890</a></div>
+        <div class="rc-contact-item">Hours: Mon–Fri, 10:00–18:00 IST</div>
+        <div style="margin-top:8px">
+          <a class="rc-contact-cta" href="mailto:support@rocart.example">Contact Support</a>
+        </div>
       </div>
     </div>
     <div class="rc-footer-bottom">
       <span>© RoCart Watches</span>
     </div>
   </footer>
+
+  <!-- FILTER PANEL (moved out of main; opens from header button) -->
+  <aside class="filters-panel" id="filtersPanel" aria-hidden="true">
+    <button class="filter-close" id="closeFilters">✕</button>
+    <h2>Filters</h2>
+    <section class="rc-filter-block">
+      <h3>Price</h3>
+      <label><input type="radio" name="price" value="all" checked /> All</label>
+      <label><input type="radio" name="price" value="under-50000" /> Under ₹50,000</label>
+      <label><input type="radio" name="price" value="50000-1000000" /> ₹50,000 - ₹10,00,000</label>
+      <label><input type="radio" name="price" value="1000000-100000000" /> ₹10,00,000 - ₹10,00,00,000</label>
+    </section>
+    <section class="rc-filter-block">
+      <h3>Brand</h3>
+      <label><input type="checkbox" data-brand="Rolex" value="Rolex" /> Rolex</label>
+      <label><input type="checkbox" data-brand="Jacob & Co" value="Jacob & Co" /> Jacob &amp; Co</label>
+      <label><input type="checkbox" data-brand="Omega" value="Omega" /> Omega</label>
+      <label><input type="checkbox" data-brand="Fossil" value="Fossil" /> Fossil</label>
+    </section>
+  </aside>
 
   <!-- CART OVERLAY -->
   <div class="rc-cart-overlay" id="cartOverlay"></div>
@@ -207,33 +243,263 @@
   </aside>
 
 
+
+<!-- PROFILE MODAL -->
+<div class="rc-modal-overlay" id="profileOverlay"></div>
+
+<div class="rc-modal rc-profile-modal" id="profileModal" aria-hidden="true">
+  <button class="rc-modal-close" id="profileClose">✕</button>
+
+  <div class="rc-profile-content">
+    <div class="rc-profile-header">
+      <img
+        id="profileAvatar"
+        src="https://www.gravatar.com/avatar/?d=mp&s=120"
+        alt="Profile"
+      />
+
+      <div class="rc-profile-info">
+        <div id="profileName">User</div>
+        <div id="profileEmail">you@example.com</div>
+      </div>
+    </div>
+
+    <div class="rc-profile-actions">
+      <button
+        id="profileLogout"
+        class="rc-btn rc-outline rc-danger"
+      >
+        Logout
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
   <script src="main.js"></script>
   <script src="cart.js"></script>
+  <script src="more.js"></script>
+  <script src="login.js"></script>
 
-  <!-- FILTER TOGGLE SCRIPT -->
- <script>
-  const openFilters = document.getElementById("openFilters");
-  const filtersPanel = document.getElementById("filtersPanel");
-  const filterOverlay = document.getElementById("filterOverlay");
-  const closeFilters = document.getElementById("closeFilters"); // 👈 ADD THIS
+  <!-- FILTER TOGGLE SCRIPT (guarded) -->
+  <script>
+    (function(){
+      const openFilters = document.getElementById("openFilters");
+      const filtersPanel = document.getElementById("filtersPanel");
+      const filterOverlay = document.getElementById("filterOverlay");
+      const closeFilters = document.getElementById("closeFilters");
 
-  function openFilterPanel() {
-    filtersPanel.classList.add("active");
-    filterOverlay.classList.add("active");
-    document.body.style.overflow = "hidden";
+      function openFilterPanel(){
+        if(!filtersPanel || !filterOverlay) return;
+        filtersPanel.classList.add('active');
+        filtersPanel.setAttribute('aria-hidden','false');
+        filterOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeFilterPanel(){
+        if(!filtersPanel || !filterOverlay) return;
+        filtersPanel.classList.remove('active');
+        filtersPanel.setAttribute('aria-hidden','true');
+        filterOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      if(openFilters) openFilters.addEventListener('click', openFilterPanel);
+      if(filterOverlay) filterOverlay.addEventListener('click', closeFilterPanel);
+      if(closeFilters) closeFilters.addEventListener('click', closeFilterPanel);
+    })();
+  </script>
+
+<!-- FEEDBACK INTERACTIONS: auto-star + thank-you popup -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const experienceRadios = Array.from(document.querySelectorAll('input[name="experience"]'));
+  const starInputs = Array.from(document.querySelectorAll('.rc-feedback-stars input[name="rating"]'));
+  const submitBtn = document.querySelector('.rc-feedback-submit');
+
+  function setStars(n) {
+    if (!starInputs || starInputs.length === 0) return;
+    // ensure numeric compare
+    starInputs.forEach(si => {
+      si.checked = Number(si.value) === Number(n);
+    });
   }
 
-  function closeFilterPanel() {
-    filtersPanel.classList.remove("active");
-    filterOverlay.classList.remove("active");
-    document.body.style.overflow = "";
+  // Map experience to star defaults
+  const mapExpToStars = {
+    excellent: 5,
+    good: 4,
+    average: 3,
+    poor: 1
+  };
+
+  experienceRadios.forEach(r => r.addEventListener('change', () => {
+    const v = r.value;
+    if (mapExpToStars[v]) setStars(mapExpToStars[v]);
+  }));
+  document.querySelector(".rc-feedback-submit").addEventListener("click", () => {
+  const text = document.getElementById("feedbackText").value.trim();
+  if (!text) return;
+
+  const list =
+    JSON.parse(localStorage.getItem("feedbackList")) || [];
+
+  list.push(text);
+  localStorage.setItem("feedbackList", JSON.stringify(list));
+
+  alert("Feedback saved!");
+});
+
+  // Submit -> show thank you popup with emojis
+  if (submitBtn) {
+    submitBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      const selectedExp = document.querySelector('input[name="experience"]:checked');
+      const selectedRating = document.querySelector('.rc-feedback-stars input[name="rating"]:checked');
+
+      const overlay = document.createElement('div');
+      overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.45);display:flex;align-items:center;justify-content:center;z-index:20000;';
+
+      const card = document.createElement('div');
+      card.style.cssText = 'background:#fff;padding:22px;border-radius:12px;box-shadow:0 18px 50px rgba(2,6,23,0.36);text-align:center;max-width:420px;width:88%;';
+
+      const title = document.createElement('div');
+      title.textContent = 'Thank you for your feedback!';
+      title.style.cssText = 'font-weight:800;font-size:18px;margin-bottom:8px;color:#0b1220;';
+
+      const details = document.createElement('div');
+      const expText = selectedExp ? (selectedExp.value.charAt(0).toUpperCase() + selectedExp.value.slice(1)) : 'Response received';
+      const ratingText = selectedRating ? selectedRating.value + ' ★' : '—';
+      details.textContent = `${expText} • ${ratingText}`;
+      details.style.cssText = 'color:#6b7280;margin-bottom:14px;font-size:14px;';
+
+      const emojis = document.createElement('div');
+      emojis.innerHTML = '🎉 ✨ 💖';
+      emojis.style.cssText = 'font-size:34px;margin-bottom:14px;transform:scale(0);transition:transform .32s cubic-bezier(.2,.9,.2,1);';
+
+      const closeBtn = document.createElement('button');
+      closeBtn.textContent = 'Close';
+      closeBtn.style.cssText = 'background:var(--rc-blue);color:#fff;border:0;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:700;';
+
+      closeBtn.addEventListener('click', () => {
+        overlay.style.opacity = '0';
+        overlay.style.transition = 'opacity .18s ease';
+        setTimeout(() => overlay.remove(), 180);
+      });
+
+      card.appendChild(title);
+      card.appendChild(details);
+      card.appendChild(emojis);
+      card.appendChild(closeBtn);
+      overlay.appendChild(card);
+      document.body.appendChild(overlay);
+
+      // animate emojis
+      requestAnimationFrame(() => setTimeout(() => { emojis.style.transform = 'scale(1)'; }, 40));
+
+      // auto-close after a short delay
+      setTimeout(() => {
+        if (overlay.parentElement) {
+          overlay.style.opacity = '0';
+          overlay.style.transition = 'opacity .3s ease';
+          setTimeout(() => overlay.remove(), 300);
+        }
+      }, 3200);
+    });
   }
 
-  openFilters.addEventListener("click", openFilterPanel);
-  filterOverlay.addEventListener("click", closeFilterPanel);
-
-  closeFilters.addEventListener("click", closeFilterPanel); // 👈 THIS LINE
+});
 </script>
+
+<!-- LOGIN SUBMIT BUTTON WIRING
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const loginForm = document.getElementById('loginForm');
+  const loginSubmit = document.getElementById('loginSubmit');
+  if (loginSubmit && loginForm) {
+    loginSubmit.addEventListener('click', (e) => {
+      // If this is a native submit button (type="submit"), let the browser handle validation
+      // Only trigger programmatic submission when the button is non-submit (type="button")
+      if (loginSubmit.type === 'button') {
+        e.preventDefault();
+        if (typeof loginForm.requestSubmit === 'function') {
+          loginForm.requestSubmit();
+        } else {
+          loginForm.submit();
+        }
+      }
+    });
+  }
+});
+</script> -->
+
+<!-- LOGIN MODAL OVERLAY -->
+<div class="rc-modal-overlay" id="loginOverlay"></div>
+
+<!-- LOGIN MODAL -->
+<div class="rc-modal" id="loginModal">
+  <button class="rc-modal-close" id="closeLogin">✕</button>
+
+  <h3 class="rc-modal-title">Sign in to RoCart</h3>
+  <p class="rc-modal-subtitle">
+    Access your orders, wishlist and profile
+  </p>
+
+  <form id="loginForm" class="rc-login-form">
+    <div class="rc-form-group">
+      <label for="loginEmail">Email</label>
+      <input
+        type="email"
+        id="loginEmail"
+        placeholder="Enter your email"
+        required
+      />
+    </div>
+
+    <div class="rc-form-group">
+      <label for="loginPassword">Password</label>
+      <input
+        type="password"
+        id="loginPassword"
+        placeholder="Enter your password"
+        required
+      />
+    </div>
+
+    <!-- IMPORTANT: type="submit" -->
+    <button type="submit" class="rc-login-submit">
+      Sign In
+    </button>
+  </form>
+</div>
+
+
+
+<!-- PROFILE MODAL OVERLAY -->
+<div class="rc-modal-overlay" id="profileOverlay"></div>
+
+<!-- PROFILE MODAL -->
+<!-- PROFILE MODAL -->
+<div class="rc-modal" id="profileModal">
+  <button class="rc-modal-close" id="profileClose">✕</button>
+
+  <h3 class="rc-modal-title">My Profile</h3>
+
+  <div class="rc-profile-box">
+    <div class="rc-profile-avatar">👤</div>
+    <div>
+      <div class="rc-profile-name" id="profileName">User</div>
+      <div class="rc-profile-email" id="profileEmail">you@example.com</div>
+      <div class="rc-profile-date" id="profileDate"></div>
+    </div>
+  </div>
+
+  <button id="profileLogout" class="rc-btn rc-outline">Logout</button>
+
+</div>
 
 
 
