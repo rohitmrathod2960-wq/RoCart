@@ -37,11 +37,17 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("loginTime", new Date().toLocaleString());
   }
 
-  function logout() {
-    localStorage.removeItem("isLoggedIn");
-    localStorage.removeItem("userEmail");
-    localStorage.removeItem("loginTime");
-  }
+ function logout() {
+  localStorage.removeItem("isLoggedIn");
+  localStorage.removeItem("userEmail");
+  localStorage.removeItem("loginTime");
+  localStorage.removeItem("cart");
+
+  // 🔔 notify cart.js that logout happened
+  window.dispatchEvent(new Event("user-logged-out"));
+}
+
+
     //  UI UPDATE
   function updateAuthUI() {
     if (isLoggedIn()) {

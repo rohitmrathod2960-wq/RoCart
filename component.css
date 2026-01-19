@@ -198,7 +198,7 @@ nav.rc-discovery-row .rc-chip{
   border:1px solid #e6eefc;
   border-radius:999px;
   font-size:14px;
-  cursor:pointer;
+  /* cursor:pointer; */
   transition:all .22s ease;
   color:#0f1724;
   box-shadow: 0 6px 14px rgba(17,24,39,0.04);
@@ -612,7 +612,7 @@ nav.rc-discovery-row .rc-chip-active{
 .rc-feedback-stars  label {
   font-size: 28px;
   color: #d1d5db;
-  cursor: pointer;
+  /* cursor: pointer; */
   transition: color 0.2s;
   pointer-events: auto;
 }

@@ -75,7 +75,7 @@ const products = [
   {
     id: 7,
     brand: "Jacob & Co",
-    title: "Co. USD Yellow Diamond",
+    title: "Jacob & Co. USD Yellow Diamond",
     // rating: 4.7,
     // ratingCount: 21,
     price: 45000000,
@@ -87,7 +87,7 @@ const products = [
   {
     id: 8,
     brand: "Jacob & Co",
-    title: "acob & Co. Bugatti Chiron Tourbillon Titanium",
+    title: "Jacob & Co. Bugatti Chiron Tourbillon Titanium",
     // rating: 4.7,
     // ratingCount: 21,
     price: 38000000,
