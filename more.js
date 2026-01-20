@@ -40,14 +40,14 @@ menu.addEventListener("click", e => {
     document.body.style.overflow = "hidden";
   }
 
-  if (action === "orders") {
-    if (localStorage.getItem("isLoggedIn") !== "true") {
-      alert("Please login first");
-      return;
-    }
+  // if (action === "orders") {
+  //   if (localStorage.getItem("isLoggedIn") !== "true") {
+  //     alert("Please login first");
+  //     return;
+  //   }
 
-    alert("My Orders coming soon");
-  }
+  //   alert("My Orders coming soon");
+  // }
 
   if (action === "help") {
     const footer = document.getElementById("siteFooter");
