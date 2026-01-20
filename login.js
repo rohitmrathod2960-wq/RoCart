@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
   localStorage.removeItem("loginTime");
   localStorage.removeItem("cart");
 
-  // 🔔 notify cart.js that logout happened
+  
   window.dispatchEvent(new Event("user-logged-out"));
 }
 

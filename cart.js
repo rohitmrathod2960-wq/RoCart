@@ -1,4 +1,4 @@
-// CART STATE (MUST BE FIRST)
+
 let cart = [];
 
 // AUTH HELPER
@@ -23,10 +23,10 @@ function saveCart() {
 }
 
 
-// DOM ELEMENTS (SAFE LOAD)
+// DOM ELEMENTS 
 document.addEventListener("DOMContentLoaded", () => {
 
-  let orderAlertShown = false; // prevents double alert
+  let orderAlertShown = false; 
 
 const cartDrawer = document.getElementById("cartDrawer");
 const cartOverlay = document.getElementById("cartOverlay");
@@ -35,14 +35,14 @@ const cartTotalEl = document.getElementById("cartTotal");
 const cartCountEl = document.getElementById("cartCount");
 const openCartBtn = document.getElementById("openCart");
 const closeCartBtn = document.getElementById("closeCart");
-const placeOrderBtn = document.getElementById("placeOrderBtn"); // ✅ ADD THIS
+const placeOrderBtn = document.getElementById("placeOrderBtn"); 
 
-// ✅ NOW SAFE TO CALL
+
 loadCart();
 updateCart();
 
  
-  // OPEN / CLOSE CART
+  
   if (openCartBtn) {
     openCartBtn.addEventListener("click", () => {
       cartDrawer.classList.add("active");
@@ -65,7 +65,7 @@ updateCart();
     document.body.style.overflow = "";
   }
 
-  // ADD TO CART (EVENT DELEGATION)
+  // ADD TO CART 
   document.addEventListener("click", e => {
  if (e.target.classList.contains("rc-cart-plus")) {
   const btn = e.target;
@@ -86,11 +86,11 @@ updateCart();
 
   // ADD ITEM
 function addToCart(id) {
-  // 🔐 LOGIN CHECK
+  //  LOGIN CHECK
   if (!isLoggedIn()) {
     alert("Please login to add items to cart");
-    document.getElementById("loginBtn")?.click(); // open login modal
-    return; // ⛔ STOP HERE (VERY IMPORTANT)
+    document.getElementById("loginBtn")?.click(); 
+    return; 
   }
 
   const product = products.find(p => p.id == id);
@@ -162,12 +162,12 @@ function removeItem(id) {
   updateCart(); // already saves
 }
 
-// 🔔 CLEAR CART ON LOGOUT (OPTION 1 — CORRECT PLACE)
+//  CLEAR CART ON LOGOUT 
 window.addEventListener("user-logged-out", () => {
   cart = [];
   updateCart();
 
-  // optional: close cart drawer if open
+  
   cartDrawer.classList.remove("active");
   cartOverlay.classList.remove("active");
   document.body.style.overflow = "";
@@ -211,19 +211,19 @@ if (placeOrderBtn) {
       total: cart.reduce((sum, item) => sum + item.price * item.qty, 0)
     };
 
-    // ✅ STORE ORDERS CUMULATIVELY
+   
     const orders = JSON.parse(localStorage.getItem("orders")) || [];
     orders.push(orderData);
     localStorage.setItem("orders", JSON.stringify(orders));
 
-    // optional: last order shortcut
+    
     localStorage.setItem("lastOrder", JSON.stringify(orderData));
 
     alert(
       "Order Placed Successfully!\n\nOrder ID: " + orderId
     );
 
-    // ✅ CLEAR CART
+    //  CLEAR CART
     cart = [];
     localStorage.removeItem("cart");
     updateCart();

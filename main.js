@@ -297,7 +297,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let list = products.slice();
 
     if (panel) {
-      // Price radio (use explicit value when available)
+      // Price radio 
       const priceRadio = panel.querySelector('input[type="radio"][name="price"]:checked');
       if (priceRadio) {
         const v = priceRadio.value || labelTextFor(priceRadio).toLowerCase();
@@ -352,7 +352,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Chip filters (keeps original UI behaviour but now uses applyFiltersAndRender)
+  // Chip filters 
   document.querySelectorAll("nav.rc-discovery-row .rc-chip").forEach(chip => {
     chip.addEventListener("click", () => {
       document.querySelectorAll("nav.rc-discovery-row .rc-chip")

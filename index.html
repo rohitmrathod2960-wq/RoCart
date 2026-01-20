@@ -200,7 +200,7 @@
     </div>
   </footer>
 
-  <!-- FILTER PANEL (moved out of main opens from header button) -->
+  <!-- FILTER PANEL -->
   <aside class="filters-panel" id="filtersPanel" aria-hidden="true">
     <button class="filter-close" id="closeFilters">✕</button>
     <h2>Filters</h2>
@@ -311,7 +311,7 @@
     })();
   </script>
 
-<!-- FEEDBACK : auto-star + thank-you popup -->
+<!-- FEEDBACK  -->
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const experienceRadios = Array.from(document.querySelectorAll('input[name="experience"]'));
@@ -320,7 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function setStars(n) {
     if (!starInputs || starInputs.length === 0) return;
-    // ensure numeric compare
+   
     starInputs.forEach(si => {
       si.checked = Number(si.value) === Number(n);
     });
@@ -485,19 +485,19 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   placeOrderBtn.addEventListener("click", () => {
-    // 1. Validate cart
+ 
     if (cartItems.length === 0) {
       alert("Your cart is empty");
       return;
     }
 
-    // 2. Disable button + loading
+    
     placeOrderBtn.disabled = true;
     placeOrderBtn.textContent = "Placing order...";
 
-    // 3. Fake API delay (professional feel)
+  
     setTimeout(() => {
-      // 4. Create fake order
+      
       const order = {
         orderId: "ORD-" + Date.now(),
         items: cartItems,
@@ -508,17 +508,17 @@ document.addEventListener('DOMContentLoaded', () => {
         date: new Date().toLocaleString()
       };
 
-      // 5. Save order locally
+      
       localStorage.setItem("lastOrder", JSON.stringify(order));
 
-      // 6. Clear cart
+      
       localStorage.removeItem("cart");
       cartItems = [];
 
-      // 7. Success feedback
+     
       placeOrderBtn.textContent = "Order Placed ✓";
 
-      // Optional redirect after success
+     
       setTimeout(() => {
         alert(
           `Order Placed Successfully!\n\nOrder ID: ${order.orderId}`
