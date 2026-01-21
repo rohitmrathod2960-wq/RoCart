@@ -1,5 +1,9 @@
 
 let cart = [];
+const DISCOUNT_THRESHOLD = 100000; // ₹100000
+const DISCOUNT_ELIGIBLE_PRICE = 100000; // ₹1,00,000+
+const DISCOUNT_RATE = 0.30;       // 30%
+
 
 // AUTH HELPER
 function isLoggedIn() {
@@ -112,7 +116,8 @@ function addToCart(id) {
  function updateCart() {
   cartItemsEl.innerHTML = "";
 
-  let total = 0;
+  let subtotal = 0;
+
   let count = 0;
 
   if (cart.length === 0) {
@@ -121,8 +126,8 @@ function addToCart(id) {
   }
 
   cart.forEach(item => {
-    total += item.price * item.qty;
-    count += item.qty;
+   subtotal += item.price * item.qty;
+   count += item.qty;
 
     cartItemsEl.innerHTML += `
       <div class="rc-cart-item">
@@ -138,8 +143,36 @@ function addToCart(id) {
     `;
   });
 
-  cartTotalEl.textContent = "₹" + total.toLocaleString();
+let discount = 0;
+
+// apply discount ONLY on eligible items
+cart.forEach(item => {
+  if (item.price >= DISCOUNT_ELIGIBLE_PRICE) {
+    discount += item.price * item.qty * DISCOUNT_RATE;
+  }
+});
+
+const finalTotal = subtotal - discount;
+
+
+    //  CART TOTAL DISPLAY
+ 
+  cartTotalEl.innerHTML = `
+    <div>Subtotal: ₹${subtotal.toLocaleString()}</div>
+    ${
+      discount > 0
+        ? `<div style="color:#16a34a;font-weight:600;">
+            New Year Discount (30%): −₹${discount.toLocaleString()}
+           </div>`
+        : ""
+    }
+    <div style="font-weight:800;margin-top:6px;">
+      Total: ₹${finalTotal.toLocaleString()}
+    </div>
+  `;
+
   cartCountEl.textContent = count;
+
 
   saveCart();
   updatePlaceOrderButton();
@@ -191,7 +224,7 @@ if (placeOrderBtn) {
   placeOrderBtn.addEventListener("click", (e) => {
 
     e.preventDefault();
-    e.stopImmediatePropagation();
+    // e.stopImmediatePropagation();
 
     if (cart.length === 0) {
       alert("Your cart is empty. Please add items before placing an order.");
@@ -199,6 +232,12 @@ if (placeOrderBtn) {
     }
 
     const orderId = "ORD-" + Date.now();
+
+     const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+      const discount = subtotal > DISCOUNT_THRESHOLD ? subtotal * DISCOUNT_RATE : 0;
+
+      total: subtotal - discount
+
 
     const orderData = {
       orderId,
@@ -208,7 +247,7 @@ if (placeOrderBtn) {
         price: item.price,
         qty: item.qty
       })),
-      total: cart.reduce((sum, item) => sum + item.price * item.qty, 0)
+      total: finalTotal
     };
 
    
@@ -230,13 +269,6 @@ if (placeOrderBtn) {
 
   }, true);
 }
-
-
-
-
-
-
-
 
 });
 
