@@ -1242,3 +1242,12 @@ nav.rc-discovery-row .rc-chip-active{
   background: #9db8f5;
   cursor: not-allowed;
 }
+/* Make POLICY links same color as CONTACT links */
+.rc-footer a {
+  color: #2874f0;       /* same blue as Contact */
+  text-decoration: none;
+}
+
+.rc-footer a:hover {
+  text-decoration: underline;
+}

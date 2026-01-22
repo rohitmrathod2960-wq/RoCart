@@ -475,7 +475,7 @@ document.addEventListener('DOMContentLoaded', () => {
   <button id="profileLogout" class="rc-btn rc-outline">Logout</button>
 
 </div>
-<script>
+<!-- <script>
   const placeOrderBtn = document.getElementById("placeOrderBtn");
 
   // Example cart (replace with your actual cart source)
@@ -486,8 +486,8 @@ document.addEventListener('DOMContentLoaded', () => {
   placeOrderBtn.addEventListener("click", () => {
  
     if (cartItems.length === 0) {
-      alert("Your cart is empty");
-      return;
+    //   alert("Your cart is empty");
+    return;
     }
 
     
@@ -518,16 +518,16 @@ document.addEventListener('DOMContentLoaded', () => {
       placeOrderBtn.textContent = "Order Placed ✓";
 
      
-      setTimeout(() => {
-        alert(
-          `Order Placed Successfully!\n\nOrder ID: ${order.orderId}`
-        );
-        location.reload(); 
-      }, 600);
+      // setTimeout(() => {
+      //   alert(
+      //     `Order Placed Successfully!\n\nOrder ID: ${order.orderId}`
+      //   );
+      //   location.reload(); 
+      // }, 600);
 
     }, 1500); 
   });
-</script>
+</script> -->
 
 
 </body>

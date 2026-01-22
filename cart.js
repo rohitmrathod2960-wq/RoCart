@@ -1,6 +1,7 @@
 
 let cart = [];
 const DISCOUNT_THRESHOLD = 100000; // ₹100000
+// const OFFER_PRODUCT_ID = 3;
 const DISCOUNT_ELIGIBLE_PRICE = 100000; // ₹1,00,000+
 const DISCOUNT_RATE = 0.30;       // 30%
 
@@ -100,6 +101,14 @@ function addToCart(id) {
   const product = products.find(p => p.id == id);
   if (!product) return;
 
+  // for perticular discount
+//   const product = products.find(p => p.id === Number(id));
+//   if (!product) {
+//   console.error("Product not found for id:", id);
+//   return;
+// }
+
+
   const item = cart.find(i => i.id == id);
 
   if (item) {
@@ -175,6 +184,30 @@ const finalTotal = subtotal - discount;
 
 
   saveCart();
+  // for perticular products
+// let discount = 0;
+// ONLY product id = 3 gets 30% off
+// cart.forEach(item => {
+//   if (item.id === 3) {
+//     discount += item.price * item.qty * 0.30;
+//   }
+// });
+// const finalTotal = subtotal - discount;
+// cartTotalEl.innerHTML = `
+//   <div>Subtotal: ₹${subtotal.toLocaleString()}</div>
+//   ${
+//     discount > 0
+//       ? `<div style="color:#16a34a;font-weight:600;">
+//            30% OFF on Rolex Red Face: −₹${discount.toLocaleString()}
+//          </div>`
+//       : ""
+//   }
+//   <div style="font-weight:800;margin-top:6px;">
+//     Total: ₹${finalTotal.toLocaleString()}
+//   </div>
+// `;
+// cartCountEl.textContent = count;
+// saveCart();
   updatePlaceOrderButton();
 
   // reset alert lock whenever cart changes
@@ -211,7 +244,7 @@ function updatePlaceOrderButton() {
 
   if (cart.length === 0) {
     placeOrderBtn.disabled = true;
-    placeOrderBtn.textContent = "Cart is Empty";
+    placeOrderBtn.textContent = "Place Order";
     placeOrderBtn.style.opacity = "0.6";
   } else {
     placeOrderBtn.disabled = false;
@@ -221,22 +254,66 @@ function updatePlaceOrderButton() {
 }
 
 if (placeOrderBtn) {
+
+  
+//for perticular products
+
+
+// placeOrderBtn.addEventListener("click", e => {
+//   e.preventDefault();
+
+//   if (cart.length === 0) {
+//     alert("Your cart is empty");
+//     return;
+//   }
+
+//   let subtotal = 0;
+//   let discount = 0;
+
+//   cart.forEach(item => {
+//     subtotal += item.price * item.qty;
+//     if (item.id === 3) {
+//       discount += item.price * item.qty * 0.30;
+//     }
+//   });
+
+//   const finalTotal = subtotal - discount;
+
+//   alert(`Order placed!\nTotal: ₹${finalTotal.toLocaleString()}`);
+
   placeOrderBtn.addEventListener("click", (e) => {
 
     e.preventDefault();
-    // e.stopImmediatePropagation();
+    e.stopImmediatePropagation();
+     e.stopPropagation();
 
-    if (cart.length === 0) {
-      alert("Your cart is empty. Please add items before placing an order.");
-      return;
-    }
+    // if (cart.length === 0) {
+    //   alert("Your cart is empty. Please add items before placing an order.");
+    //   return;
+    // }
 
     const orderId = "ORD-" + Date.now();
 
-     const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-      const discount = subtotal > DISCOUNT_THRESHOLD ? subtotal * DISCOUNT_RATE : 0;
+    //  const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+    //   const discount = subtotal > DISCOUNT_THRESHOLD ? subtotal * DISCOUNT_RATE : 0;
 
-      total: subtotal - discount
+    //   total: subtotal - discount
+
+
+     let subtotal = 0;
+    let discount = 0;
+
+    cart.forEach(item => {
+      subtotal += item.price * item.qty;
+
+      if (item.price >= DISCOUNT_ELIGIBLE_PRICE) {
+        discount += item.price * item.qty * DISCOUNT_RATE;
+      }
+    });
+
+    const finalTotal = subtotal - discount;
+
+
 
 
     const orderData = {
@@ -254,9 +331,7 @@ if (placeOrderBtn) {
     const orders = JSON.parse(localStorage.getItem("orders")) || [];
     orders.push(orderData);
     localStorage.setItem("orders", JSON.stringify(orders));
-
-    
-    localStorage.setItem("lastOrder", JSON.stringify(orderData));
+     localStorage.setItem("lastOrder", JSON.stringify(orderData));
 
     alert(
       "Order Placed Successfully!\n\nOrder ID: " + orderId
@@ -267,7 +342,7 @@ if (placeOrderBtn) {
     localStorage.removeItem("cart");
     updateCart();
 
-  }, true);
+  });
 }
 
 });
